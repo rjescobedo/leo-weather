@@ -1,4 +1,4 @@
-const api_Key = WEATHER_API;
+const api_Key = process.env.WEATHER_API;
 const getWeatherBtn = document.getElementById('get-weather-btn');
 
 function displayWeather(data) {
