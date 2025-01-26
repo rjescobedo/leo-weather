@@ -1,7 +1,175 @@
 body {
+    margin: 0;
+    height: 100vh;
+    background: white;
+    font-family: Arial, sans-serif;
     text-align: center;
+    background-image: url('/images/minecraft-weather-background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-img {
-    width: 200px;
+.app-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
 }
+  
+.weather-input-container {
+  width: 300px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 1rem;
+}
+  .weather-input-container h1 {
+    font-size: 2.2rem;
+    margin: 0 0 1rem 0;
+    padding: 0;
+    color: #02d9be;
+    text-shadow: 1px 2px 4px black;
+  }
+
+  #leo-img {
+    width: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.1);
+    display: block;
+    transition: all .3s ease
+  }
+
+  #leo-img:hover {
+    transform: scale(1.05);
+    opacity: .9;
+  }
+  
+
+  #weather-input {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1rem;
+    margin-top: 1rem;
+    width: 200px;
+    height: 10px;
+    border-radius: 40px;
+    border: 2px solid #c5f010;
+    color: #251a13;
+    transition: all .3s ease;
+  }
+
+  #weather-input:focus {
+    border: 2px solid #02d9be;
+    background-color: white;
+    outline: none;
+
+  }
+
+  #get-weather-btn {
+    margin: 1rem 0 0 0;
+    color: #251a13;
+    font-weight: 500;
+    background-color: #c5f010;
+    padding: .5rem 1rem;
+    border: 2px solid #02d9be;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+  }
+
+  #get-weather-btn:hover {
+    background-color: #02d9be;
+    border: 2px solid #c5f010;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  #weather-data-container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 0;
+    overflow: hidden;
+    transition: height 2s ease-out;
+  }
+
+  #weather-data-container.open {
+    height: 300px;
+    width: 100%;
+  }
+
+  .city-title {
+    color: #451c6e;
+    text-shadow: 0 0 1px white;
+    font-size: 3.5rem;
+    margin: 0;
+    padding-top: .5rem;
+  }
+
+  .temperature {
+    color: #02d9be;
+    text-shadow: 1px 1px 2px black;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sky-icon {
+    width: 100px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #340c05;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0;
+  }
+
+  @media (min-width: 700px) {
+
+    #weather-data-container {
+      max-width: 600px;
+    }
+
+    .weather-input-container h1 {
+      font-size: 3rem;
+    }  
+
+    #weather-input {
+      width: 200px;
+    }
+
+    #get-weather-btn {
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .city-title {
+      font-size: 4rem;
+    }
+  }
+
+

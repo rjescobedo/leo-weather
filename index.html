@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <title>Leo's Weather App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div>
-    <img src="/images/meteorology.png" alt="Icon with all the different weather">
-    <h1>Leo's Weather App</h1>
-        <label for="weather-input">City:</label>
-        <input id="weather-input" name="weather-input" type="text">
+<div class="app-container">
+    <div class="weather-input-container">
+        <h1>Leo's World of Weather</h1>
+        <a href="index.html">
+            <img id="leo-img" src="images/leo.png" alt="Leo as an anime character who loves soccer and minecraft">
+        </a>
+        <input id="weather-input" name="weather-input" type="text" placeholder="Type in your city...">
         <button id="get-weather-btn">Get Weather</button>
+    </div>
     <div id="weather-data-container"></div>
 </div>
  
