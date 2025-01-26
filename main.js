@@ -1,4 +1,4 @@
-const WEATHER_API = '';
+const api_Key = WEATHER_API;
 const getWeatherBtn = document.getElementById('get-weather-btn');
 
 function displayWeather(data) {
@@ -71,7 +71,7 @@ getWeatherBtn.addEventListener('click', () => {
 })
 
 async function fetchWeatherData(city) {
-    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${WEATHER_API}`)
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${api_key}`)
     const locationData = await response.json();
     try {
         if(locationData.length === 0) {
@@ -82,7 +82,7 @@ async function fetchWeatherData(city) {
         const { lat, lon } = locationData[0];
         console.log(`Coordinates for ${city}: `, lat, lon);
     
-        const coordinateResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API}&units=imperial`)
+        const coordinateResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=imperial`)
 
         const weatherData = await coordinateResponse.json();
         try {
