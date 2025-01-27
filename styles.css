@@ -1,17 +1,16 @@
 body {
     margin: 0;
-    height: 100vh;
-    background: white;
+    padding: 0;
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url('/images/minecraft-weather-background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    background-image: url('/images/minecraft-weather-background.png');
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: center;
 }
 
 .app-container {
@@ -25,8 +24,8 @@ body {
 }
   
 .weather-input-container {
-  width: 300px;
-  padding: 2rem;
+  width: 100%;
+  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +47,7 @@ body {
   }
 
   #leo-img {
-    width: 150px;
+    width: 100px;
     border-radius: 50%;
     border: 4px solid white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -100,8 +99,13 @@ body {
     transform: scale(1.1);
   }
 
+  #error {
+    display: none;
+    color: red;
+    padding-top: 1rem;
+  }
+
   #weather-data-container {
-    width: 100%;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -110,61 +114,84 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     height: 0;
     overflow: hidden;
-    transition: height 2s ease-out;
+    transition: height 2s ease;
+    opacity: 0;
   }
 
   #weather-data-container.open {
-    height: 300px;
+    height: 320px;
+    opacity: 1;
     width: 100%;
   }
 
   .city-title {
     color: #451c6e;
     text-shadow: 0 0 1px white;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     margin: 0;
     padding-top: .5rem;
+  }
+
+  .sky-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px; /* Ensure a square shape */
+    padding: 0.5rem;
+    margin: .5rem;
+    text-align: center;
+    line-height: 100px; /* Vertically align the icon */
+    font-size: 48px; /* Adjust icon size */
+    border-radius: 50%; /* Circular background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    background-color: black;
   }
 
   .temperature {
     color: #02d9be;
     text-shadow: 1px 1px 2px black;
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: 600;
     margin: 0;
     padding: 0;
   }
 
-  .sky-icon {
-    width: 100px;
+  .min-max-temp {
+    color: #c5f010;
+    margin-top: .5rem;
+    text-shadow: 1px 1px 2px black;
   }
+
 
   p {
     font-size: 1rem;
-    color: #340c05;
+    color: #251a13;
     font-weight: bold;
-    margin-top: 1rem;
-    padding: 0;
+    margin: 0;
+    padding-bottom: 10px;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 600px) {
 
-    #weather-data-container {
-      max-width: 600px;
+    .weather-input-container {
+      max-width: 400px;
     }
+
+    #weather-data-container.open {
+      max-width: 600px;
+      height: 370px;
+    } 
+
 
     .weather-input-container h1 {
-      font-size: 3rem;
+      font-size: 2rem;
     }  
 
-    #weather-input {
-      width: 200px;
+    .temperature {
+      font-size: 3rem;
     }
 
-    #get-weather-btn {
-      padding: .5rem 1rem;
-      font-size: 1rem;
-      font-weight: bold;
+    .min-max-temp {
+      font-size: 1.2rem;
     }
 
     .city-title {

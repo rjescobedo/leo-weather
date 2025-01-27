@@ -11,18 +11,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="app-container">
-    <div class="weather-input-container">
-        <h1>Leo's World of Weather</h1>
-        <a href="index.html">
-            <img id="leo-img" src="images/leo.png" alt="Leo as an anime character who loves soccer and minecraft">
-        </a>
-        <input id="weather-input" name="weather-input" type="text" placeholder="Type in your city...">
-        <button id="get-weather-btn">Get Weather</button>
+    <div class="app-container">
+        <div class="weather-input-container">
+            <h1>Leo's World of Weather</h1>
+            <a href="index.html">
+                 <img id="leo-img" src="images/leo.png" alt="Leo as an anime character who loves soccer and minecraft">
+            </a>
+            <input id="weather-input" name="weather-input" type="text" placeholder="Type in your city...">
+            <button id="get-weather-btn">Get Weather</button>
+            <p id="error" display="none">Sorry! The city doesn't exist</p>
+        </div>
+        <div id="weather-data-container"></div>
     </div>
-    <div id="weather-data-container"></div>
-</div>
- 
 <script src="main.js"></script>
 </body>
 </html>

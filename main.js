@@ -1,6 +1,8 @@
+const WEATHER_API = '';
 const getWeatherBtn = document.getElementById('get-weather-btn');
 
 function displayWeather(data) {
+
     //Data Container
     const weatherDataContainer = document.getElementById('weather-data-container');
     weatherDataContainer.classList.add('open');
@@ -21,32 +23,28 @@ function displayWeather(data) {
 
     // Sky
     const sky = document.createElement('img');
+    const weatherIconCode = data.weather[0].icon;
+    sky.src = `https://openweathermap.org/img/wn/${weatherIconCode}@2x.png`
     sky.classList.add('sky-icon');
-    
-    if(data.weather[0].description === 'few clouds' || 'cloudy' || 'partly cloudy') {
-        sky.src = 'images/partly-cloudy.png';
-    } else if (data.weather[0].description === 'rain' || 'light rain' || 'heavy rain') {
-        sky.src = 'images/rain.png';
-    } else if (data.weather[0].description === 'fog' || 'light fog' || 'heavy fog') {
-        sky.src = 'images/fog.png';
-    } else if (data.weather[0].description === 'sunny' || 'sun') {
-        sky.src = 'images/sunny.png';
-    } else if (data.weather[0].description === 'thunder' || 'thunder storm' || 'storm' || 'lightning') {
-        sky.src = 'images/thunder.png';
-    } else if (data.weather[0].description === 'snowing' || 'light snow' || 'heavy snow' || 'blizzard') {
-        sky.src = 'images/snow.png';
-    } else {
-        const skyText = document.createElement('p');
-        skyText.textContent = `Skies: ${data.weather[0].description}`;
-        weatherDataContainer.append(skyText);
-    }
     weatherDataContainer.append(sky)
 
-    // Acutal Temperature & Feels Like Temperature
-    const temperature = document.createElement('p');
+    //Log the weather description for debugging
+    const skyDescription = document.createElement('p')
+    const skyData = data.weather[0].description.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');;
+    skyDescription.textContent = `${skyData}`;
+    weatherDataContainer.append(skyDescription);
+
+    // Temperature
+    const temperature = document.createElement('h3');
     temperature.classList.add('temperature');
-    temperature.textContent = `${Math.floor(data.main.temp)}°F | ${Math.floor(data.main.feels_like)}°F`;
+    temperature.textContent = `${Math.floor(data.main.temp)}°F`;
     weatherDataContainer.append(temperature)
+    
+    // Temp - low and high
+    const minMaxTemp = document.createElement('h4');
+    minMaxTemp.classList.add('min-max-temp');
+    minMaxTemp.textContent = `${Math.floor(data.main.temp_min)}°F | ${Math.floor(data.main.temp_max)}°F`;
+    weatherDataContainer.append(minMaxTemp);
 
     //Humidity
     const humidity = document.createElement('p');
@@ -73,16 +71,22 @@ async function fetchWeatherData(city) {
     const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${WEATHER_API}`)
     const locationData = await response.json();
     try {
+        
+        const error = document.getElementById('error');
+        error.innerHTML = '';
         if(locationData.length === 0) {
             const errorMessage = 'City not found';
             console.error(errorMessage);
+
+            error.style.display = 'block';
+            error.innerHTML = errorMessage;
         }
     
         const { lat, lon } = locationData[0];
         console.log(`Coordinates for ${city}: `, lat, lon);
     
         const coordinateResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API}&units=imperial`)
-
+    
         const weatherData = await coordinateResponse.json();
         try {
                 console.log('Weather Data: ', weatherData);
